@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 第一天
+            1.基础配置：将IOC的容器配置好，并且配置引用变量
+            2.别名的配置:name
+            3.这作用范围的配置scope:prototype(多个)
+            4.Spring创建Bean的时间是通过
+                * 无参构造方法来啊创建的
+                * 静态工厂实例化
+                    # 自定义工厂
+                    # 通过Spring的工厂来实例化对象
+                    # 通过Spring来管理FactoryBean来实现对 对象的实例化
+    ##########################################################################################################################################-->
+    <bean id="bookDao" class="com.strong.dao.impl.BookDaoImpl" scope="singleton"/>
+
+    <bean id="bookService" class="com.strong.service.impl.BookServiceImpl">
+        <property name="bookDao" ref="bookDao"/>
+
+    </bean>
+
+    <!--            承接上文
+                     * 静态工厂实例化-->
+    <!--             # 自定义工厂-->
+    <!--             # 通过Spring的工厂来实例化对象-->
+    <!--    ##########################################################################################################################################-->
+    <bean id="orderDao" class="com.strong.factory.OrderDaoFactory" factory-method="getOrderDaoImpl" scope="prototype"/>
+    <!--    承接上文-->
+    <!--    * 通过Spring来管理Factory来实现工厂实例化&ndash;&gt;-->
+    <!--             # 自定义工厂-->
+    <!--             # 通过Spring的工厂来实例化对象,必须通过实现接口
+    -->
+    <!--    ##########################################################################################################################################-->
+
+    <bean id="userDaoFactory" class="com.strong.factory.UserDaoFactory"/>
+    <bean id="userDao1" factory-method="getUserDao" factory-bean="userDaoFactory"/>
+    <!--    ##########################################################################################################################################-->
+    <bean id="userDao2" class="com.strong.factory.UserBeanFactoryBean"/>
+
+</beans>
