@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--
+                    测试自动装配日 ,依照类型和名称
+
+    -->
+    <bean id="bookDao" class="com.strong.dao.impl.BookDaoImpl" scope="prototype"/>
+    <bean id="bookService" class="com.strong.service.impl.BookServiceImpl" autowire="byName"/>
+    <!--    ##########################################################################################################################################
+
+        注入 集合 数组 list
+-->
+    <bean id="orderDao" class="com.strong.dao.impl.OrderDaoImpl">
+        <property name="array">
+            <array>
+                <value>100</value>
+                <value>200</value>
+                <value>300</value>
+            </array>
+        </property>
+        <property name="list">
+
+            <list>
+                <value>Strong1</value>
+                <value>Strong2</value>
+                <value>Strong3</value>
+            </list>
+        </property>
+        <property name="set">
+
+            <set>
+                <value>itcast</value>
+                <value>itheima</value>
+                <value>boxuegu</value>
+                <value>boxuegu</value>
+            </set>
+
+        </property>
+        <property name="map">
+            <map>
+                <entry key="country" value="china"/>
+                <entry key="province" value="henan"/>
+                <entry key="city" value="kaifeng"/>
+            </map>
+
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="country">china</prop>
+                <prop key="province">henan</prop>
+                <prop key="city">kaifeng</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

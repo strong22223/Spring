@@ -38,5 +38,14 @@
     <bean id="userDao1" factory-method="getUserDao" factory-bean="userDaoFactory"/>
     <!--    ##########################################################################################################################################-->
     <bean id="userDao2" class="com.strong.factory.UserBeanFactoryBean"/>
+    <!--    ##########################################################################################################################################
+                Bean的生命周期 example:参考BookDao将其使用
+                    在配置文件中创建Bean的生命周期相关的文件
+                        id class init-method
+    -->
+    <bean id="lifeCycle" class="com.strong.service.impl.LifeCycleBeanImpl" init-method="init" destroy-method="destroy">
+        <property name="bookDao" ref="bookDao"/>
+    </bean>
+
 
 </beans>
